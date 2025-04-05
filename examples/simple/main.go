@@ -6,7 +6,9 @@ import (
 	"log"
 	"os"
 
-	"github.com/idanyas/sxgo" // Import the module
+	// Import the module using its standard path.
+	// Go automatically uses the last part of the path ('sxgo') as the identifier.
+	"github.com/idanyas/sxgo"
 )
 
 func main() {
@@ -28,6 +30,7 @@ func main() {
 	// - sxgo.ModeMemory (Fastest, loads all to RAM)
 	// - Combine with sxgo.ModeBatch for index optimization: sxgo.ModeMemory | sxgo.ModeBatch
 	mode := sxgo.ModeMemory
+	// Use the default package identifier 'sxgo' to access New and ModeMemory
 	geo, err := sxgo.New(dbFile, mode)
 	if err != nil {
 		log.Fatalf("Error initializing SypexGeo (Mode: %d): %v", mode, err)
@@ -40,7 +43,7 @@ func main() {
 	// --- Perform Lookup ---
 	log.Printf("Looking up IP: %s", ipToLookup)
 
-	// Use GetCityFull for complete details (City, Region, Country)
+	// Use the default package identifier 'sxgo' to access GetCityFull
 	location, err := geo.GetCityFull(ipToLookup)
 	if err != nil {
 		// This catches fundamental errors like invalid IP format or DB read issues
